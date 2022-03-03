@@ -26,4 +26,37 @@ public class UnitTest {
         myList.addProduct(PRODUCT_NAME,PRODUCT_QUANTITY);
         Assert.assertTrue(myList.productAlreadyExists(PRODUCT_NAME_UPPERCASE));
     };
+
+
+    @Test
+    public void isTheProductRemoved(){
+        ShoppingList myList = new ShoppingList();
+        myList.addProduct(PRODUCT_NAME,PRODUCT_QUANTITY);
+        myList.deleteProduct(PRODUCT_NAME);
+        Assert.assertFalse(myList.productAlreadyExists(PRODUCT_NAME_UPPERCASE));
+    };
+
+    @Test
+    public void noProductsDeletedWhenProductNameIsEmpty(){
+        ShoppingList myList = new ShoppingList();
+        myList.addProduct(PRODUCT_NAME,PRODUCT_QUANTITY);
+        Assert.assertEquals(myList.deleteProduct(""),0);
+    };
+
+    @Test
+    public void noProductsDeletedWhenProductNameIsNull(){
+        ShoppingList myList = new ShoppingList();
+        myList.addProduct(PRODUCT_NAME,PRODUCT_QUANTITY);
+        Assert.assertEquals(myList.deleteProduct(null),0);
+    };
+
+    @Test
+    public void noProductsDeletedWhenProductNameNotExist(){
+        ShoppingList myList = new ShoppingList();
+        myList.addProduct(PRODUCT_NAME,PRODUCT_QUANTITY);
+        Assert.assertEquals(myList.deleteProduct("coKe"),0);
+    };
+
+
+
 }

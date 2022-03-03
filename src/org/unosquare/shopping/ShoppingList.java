@@ -34,5 +34,37 @@ public class ShoppingList {
        String upperName = name.toUpperCase(Locale.ROOT);
         System.out.println(upperName + " [" +productList.get(upperName)+"]");
     }
+    public int deleteProduct(String name){
+
+        try{
+            if(name == null){
+                throw new NullNameException("Product name must not be null");
+            }
+            else if(name == ""){
+                throw new EmptyNameException("Product name must not be an empty string");
+            }
+            else if(productList.get(name.toUpperCase(Locale.ROOT)) == null){
+                throw new NonExistingNameException("Product doesn't exists in the list");
+            }
+            else
+            {
+                String upperName = name.toUpperCase(Locale.ROOT);
+                int amountOfItemsTobeRemoved=productList.get(upperName);
+                productList.remove(upperName,amountOfItemsTobeRemoved);
+                return amountOfItemsTobeRemoved;
+            }
+
+        }
+        catch (EmptyNameException e){
+         //   System.out.println(e.getMessage());
+            return 0;
+        }catch (NonExistingNameException e){
+       //     System.out.println(e.getMessage());
+            return 0;
+        }catch (NullNameException e){
+       //     System.out.println(e.getMessage());
+            return 0;
+        }
+    };
 }
 
