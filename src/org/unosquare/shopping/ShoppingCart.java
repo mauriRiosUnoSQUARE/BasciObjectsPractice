@@ -20,7 +20,10 @@ public class ShoppingCart {
         subTotal=0;
         totalValue=0;
     }
-    void AddProductsToSet(String name, double price){
+    void setShoppingList(ShoppingList stuffToBuy){
+        thingsToBuy=stuffToBuy;
+    }
+    void addProductsToSet(String name, double price){
         name = name.toUpperCase(Locale.ROOT);
         Product newItem = new Product();
         newItem.setName(name);
@@ -80,5 +83,12 @@ public class ShoppingCart {
         System.out.println("SubTotal: $"+df.format(Math.round(subTotal)));
         System.out.println("Taxes: $"+df.format(Math.floor(taxes)));
         System.out.println("TOTAL: $"+df.format(Math.ceil(totalValue)));
+    }
+    void removeProductFromSet(String productName){
+        productsToBuy.forEach((item)-> {
+            if(item.getName() == productName){
+                productsToBuy.remove(item);
+            }
+        });
     }
 }
